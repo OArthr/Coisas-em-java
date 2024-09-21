@@ -5,38 +5,38 @@ import java.util.Scanner;
 public class Site {
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
+		Interface inter = new Interface();
+		Usuario u = null;
+		int tela = 0;
+		//0=login 1=userArea 2=buscaCons 3=addCons
 		
 		//Repositorios
-		Repositoriousuarios usuariorepo = new Repositoriousuarios();
-		Repositorioconsultorios consultoriorepo = new Repositorioconsultorios();
+		Repositoriousuarios userRep = new Repositoriousuarios();
+		Repositorioconsultorios consRep = new Repositorioconsultorios();
 		
-		//Definir quantidade de médicos e pacientes
-		System.out.println("Quanto médicos deseja cadastrar?");
-		int numMedicos = scanner.nextInt();
-		scanner.nextLine();
-		
-		for (int i = 1 ;i <= numMedicos; i++ ) {
-			System.out.println("Digite o nome do médico " + i + ": ");
-			String nomeDoutor = scanner.nextLine();
-			System.out.println("Digite o cpf do médico " + i + ": ");
-			String cpfDoutor = scanner.nextLine();
-			
-			Doutor doutor = new Doutor(nomeDoutor, cpfDoutor);
-			usuariorepo.addusuario(doutor);
+		while(tela>=0) {
+			switch(tela) {
+			case 0:
+				u = inter.start(scan,userRep);
+				tela = 1;
+				continue;
+			case 1:
+				tela = inter.userPlace(scan, u, userRep);
+				continue;
+			case 2:
+				inter.fazConsulta(scan, (Paciente)u, consRep);
+				tela = 1;
+				continue;
+			case 3:
+				inter.cadastrarConsultorio(scan, (Doutor)u, consRep);
+				tela = 1;
+				continue;
+			case 4:
+			}
 		}
-		System.out.println("Quantos pacientes deseja cadastrar?");
-		int numPacientes = scanner.nextInt();
-		scanner.nextLine();
 		
-		for (int i = 1; i <= numPacientes; i++) {
-			System.out.println("Digite o nome do Paciente " + i + ": ");
-			String nomePaciente = scanner.nextLine();
-			System.out.println("Digite o cpf do Paciente " + i + ": ");
-			String cpfPaciente = scanner.nextLine();
-			
-			Paciente paciente = new Paciente(nomePaciente, cpfPaciente);
-			usuariorepo.addusuario(paciente);
-		}
+		
+		scan.close();
 	}
 }

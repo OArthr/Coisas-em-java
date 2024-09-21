@@ -10,8 +10,10 @@ public class Doutor extends Usuario{
 		super(nome, cpf);
 		this.consultorios = new ArrayList<>();
 	}
-	public void cadastrarConsultorio(Consultorio consultorio) {
+	public void cadastrarConsultorio(String nome, Repositorioconsultorios consRep) {
+		Consultorio consultorio = new Consultorio(nome,this);
 		consultorios.add(consultorio);
+		consRep.addconsultorio(consultorio);
 	}
 	@Override
 	public void verAgenda() {

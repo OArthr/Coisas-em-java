@@ -18,6 +18,7 @@ public class Repositoriousuarios {
 				return usuario;
 			}
 		}
+		System.out.println("Usuário não encontrado");
 		return null;
 	}
 	public boolean removerUsuario(String cpf) {

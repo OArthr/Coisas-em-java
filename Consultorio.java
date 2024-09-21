@@ -28,4 +28,8 @@ public class Consultorio {
 			System.out.println(consulta);
 		}
 	}
+	@Override
+	public String toString() {
+		return String.format("Nome: %s\nDoutor: %s", nome,doutorResponsavel.getNome());
+	}
 }

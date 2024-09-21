@@ -21,6 +21,7 @@ public class Repositorioconsultorios {
 				return consultorio;
 			}
 		}
+		System.out.println("Consultório não encontrado!");
 		return null;
 	}
 	
@@ -35,5 +36,11 @@ public class Repositorioconsultorios {
 		System.out.println("Consultório não encontrado!");
 		return false;
 		
+	}
+	public void printConsultorios() {
+		System.out.println("-----------------------");
+		for(Consultorio c : consultorios) {
+			System.out.println(c.toString()+"\n-----------------------");
+		}
 	}
 }
