@@ -23,13 +23,8 @@ public class Consultorio {
 		consultas.add(consulta);
 	}
 	public void verConsultas() {
-		System.out.println("consulta no consultório " + nome + ": ");
 		for (Consulta consulta : consultas) {
-			System.out.println(consulta);
+			System.out.println("| "+consulta.toString((Usuario)doutorResponsavel));
 		}
-	}
-	@Override
-	public String toString() {
-		return String.format("Nome: %s\nDoutor: %s", nome,doutorResponsavel.getNome());
 	}
 }

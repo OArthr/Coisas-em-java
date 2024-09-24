@@ -17,9 +17,12 @@ public class Paciente extends Usuario {
 	}
 	@Override
 	public void verAgenda() {
-		System.out.println("Consultas para " + getNome() + ": ");
+		System.out.print(
+				  "+=================================+\n"
+				+ "|         -Sua Agenda-\n"
+				+ "|\n");
 		for (Consulta consulta : consultasAgendadas) {
-			System.out.println(consulta);
+			System.out.print("| "+consulta.toString((Usuario)this)+"\n");
 		}
 	}
 }

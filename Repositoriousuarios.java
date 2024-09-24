@@ -18,18 +18,15 @@ public class Repositoriousuarios {
 				return usuario;
 			}
 		}
-		System.out.println("Usuário não encontrado");
 		return null;
 	}
 	public boolean removerUsuario(String cpf) {
 		for (Usuario usuario : usuarios) {
 			if (usuario.getCpf().equals(cpf)) {
 				usuarios.remove(usuario);
-				System.out.println("Usuário removido com sucesso");
 				return true;
 			}
 		}
-		System.out.println("Usuário não encontrado");
 		return false;
 	}
 }

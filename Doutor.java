@@ -13,13 +13,20 @@ public class Doutor extends Usuario{
 	public void cadastrarConsultorio(String nome, Repositorioconsultorios consRep) {
 		Consultorio consultorio = new Consultorio(nome,this);
 		consultorios.add(consultorio);
-		consRep.addconsultorio(consultorio);
+		consRep.addConsultorio(consultorio);
 	}
+	
 	@Override
 	public void verAgenda() {
-		System.out.println("Consulta agendada para " + getNome() + ": ");
+		System.out.print(
+				  "+=================================+\n"
+				+ "|         -Seus Consultórios-\n"
+				+ "|\n");
 		for (Consultorio consultorio : consultorios) {
-			System.out.println(consultorios);
+			System.out.printf(
+					  "+---------------------------------+\n"
+					+ "| Consultório: %-19s|\n"
+					+ "+---------------------------------+\n",consultorio.getNome());
 			consultorio.verConsultas();
 		}
 	}

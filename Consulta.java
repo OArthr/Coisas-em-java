@@ -10,9 +10,12 @@ public class Consulta {
 		this.consultorio = consultorio;
 		this.dataHora = dataHora;
 	}
-	@Override
-	public String toString() {
-		return "Consulta com " + paciente.getNome() + " no consultório " + consultorio.getNome() +
-				" em " + dataHora;
+	public String toString(Usuario u) {
+		if(u instanceof Doutor)
+			return "Consulta com "+ paciente.getNome()
+					+ " no consultório "+ consultorio.getNome()+" em "+ dataHora;
+		else
+			return "Consulta com "+ consultorio.getDoutorResponsavel().getNome()
+					+ " no consultório " + consultorio.getNome()+" em "+ dataHora;
 	}
 }

@@ -6,100 +6,175 @@ import java.util.Scanner;
 public class Interface {
 	private int escolha;
 	
-	public static void clear() {  
-	    System.out.print("\033[H\033[2J");  
-	    System.out.flush();  
+	public int start(Scanner scan) {
+		escolha = 0;
+		System.out.print(
+				  "+=================================+\n"
+				+ "|  Seja bem vindo ao SeConsult!   |\n"
+				+ "+=================================+\n"
+				+ "|\n"
+				+ "| 1- Novo Usuário\n"
+				+ "| 2- Conectar-se\n"
+				+ "| 3- Sair\n"
+				+ "|\n"
+				+ "|-> ");
+		escolha = scan.nextInt();
+		while(escolha<1||escolha>3) {
+			System.out.print("|-> ");
+			escolha = scan.nextInt();
+		}
+		scan.nextLine();
+		if(escolha ==3)
+			return -1;
+		return escolha;
 	}
 	
-	public Usuario start(Scanner scan, Repositoriousuarios userRep) {
-		clear();
-		escolha = 0;
-		System.out.println("\tSeja bem vindo ao SeConsult!\n\nNovo Usuário(1) ou Entrar(2)");
-		escolha = scan.nextInt();
+	public Usuario newUser(Scanner scan,Repositoriousuarios userRep) {
 		String nome,cpf;
-		Usuario u = null;
-		clear();
+		Usuario u;
 		
-		if (escolha==1){
-			System.out.print("\t---Novo Usuário---\nNome: ");
-			scan.nextLine();
-			nome = scan.nextLine();
-			System.out.print("\nCPF: ");
+		System.out.print(
+				"+=================================+\n"
+						+ "|         -Novo Usuário-\n"
+						+ "|               __\n"
+						+ "|             /. . \\ \n"
+						+ "|             \\_- _/\n"
+						+ "|             /____\\\n"
+						+ "|\n"
+						+ "|\tNome: ");
+		nome = scan.nextLine();
+		
+		
+		System.out.print("|\tCPF: ");
+		cpf = scan.nextLine();
+		
+		System.out.print("|   É um Doutor?(s/n): ");
+		
+		u = (scan.nextLine().equals("s")) ? new Doutor(nome,cpf) : new Paciente(nome,cpf);
+		
+		userRep.addusuario(u);
+		return u;
+	}
+	
+	public Usuario loginUser(Scanner scan, Repositoriousuarios userRep) {
+		String cpf;
+		Usuario u;
+		
+		System.out.print(
+				  "+=================================+\n"
+				+ "|         -Log in-\n"
+				+ "|               __\n"
+				+ "|             /ô ó \\ \n"
+				+ "|             \\_- _/\n"
+				+ "|             /____\\\n"
+				+ "|\n"
+				+ "|\tCPF: ");
+		
+		u = userRep.buscarUsuario(scan.nextLine());
+		
+		while(u==null) {
+			System.out.print(
+				  "|  CPF não encontrado...\n"
+				+ "|  Digite 'novo' se quiser criar um novo usuario.\n"
+				+ "|\tCPF: ");
+			
 			cpf = scan.nextLine();
-			System.out.print("\nÉ um Doutor?(s/n): ");
-			if (scan.nextLine().equals("s")) 
-				u = new Doutor(nome,cpf);
-			else 
-				u = new Paciente(nome,cpf);
-			userRep.addusuario(u);
-		}
-		else {
-			System.out.println("\t---Entrar---");
-			while(u==null) {
-				System.out.print("CPF: ");
-				scan.nextLine();
-				cpf = scan.nextLine();
-				u = userRep.buscarUsuario(cpf);
-			}
+			if (cpf.equals("novo")) 
+				return this.newUser(scan,userRep);
+			u = userRep.buscarUsuario(cpf);
 		}
 		return u;
 	}
 	
-	public int userPlace(Scanner scan, Usuario u, Repositoriousuarios userRep) {
-		clear();
+	public int userPlace(Scanner scan, Usuario u) {
 		escolha = 0;
-		System.out.print(String.format("\t---Área do Usuário---\n\nNome: %s\nCPF: %s\n\n(1)Ver Agenda ",u.getNome(),u.getCpf()));
+		System.out.printf(
+				  "+=================================+\n"
+				+ "|    ==== Área do Usuário ====\n"
+				+ "|               __\n"
+				+ "|             /^ ^ \\ \n"
+				+ "|             \\_u _/\n"
+				+ "|             /____\\\n"
+				+ "|\n"
+				+ "|\tNome: %s\n"
+				+ "|\t CPF: %s\n"
+				+ "|\n", u.getNome(),u.getCpf(),0);
 		if(u instanceof Paciente) 
-			System.out.print("(2)Buscar Consultórios ");
+			System.out.print("| 1- Ver agenda\n"
+					+ "| 2- Buscar Consultórios\n");
 		else
-			System.out.print("(2)Adicionar Consultório ");
-		System.out.println("(3)Desconectar (4)Sair");
+			System.out.print("| 1- Ver agenda e seus consultórios\n"
+					+ "| 2- Adicionar Consultório\n");
+		System.out.print("| 3- Desconectar\n"
+				+ "| 4- Sair\n"
+				+ "|\n"
+				+ "|-> ");
 		
 		escolha = scan.nextInt();
+		while(escolha<1||escolha>4) {
+			System.out.print("| Digite uma escolha válida.\n"
+					+ "|-> ");
+			escolha = scan.nextInt();
+		}
+		
 		switch(escolha) {
 		case 1:
 			u.verAgenda();
-			scan.next();
-			return 1;
+			scan.nextLine();
+			System.out.print("| Digite qualquer tecla para voltar: ");
+			scan.nextLine();
+			return 3;
 		case 2:
 			if (u instanceof Paciente) 
-				return 2;
+				return 4;
 			else 
-				return 3;
+				return 5;
 		case 3:
 			return 0;
 		default:
 			return -1;
 		}
 	}
+	
 	 public void fazConsulta(Scanner scan, Paciente u, Repositorioconsultorios consRep)  {
-		escolha = 0;
-		clear();
-		System.out.println("\t---Consultorios Cadastrados---");
+		String data, nome;
+		Consultorio c;
+		
+		System.out.print(
+				  "+=================================+\n"
+				+ "| --- Consultórios Cadastrados ---\n"
+				+ "|\n");
+		
 		consRep.printConsultorios();
 		
-		Consultorio ct=null;
-		while (ct == null) {
-			System.out.println("Voltar?(s/n):");
-			scan.nextLine();
-			if(scan.nextLine().equals("s"))
+		System.out.print("| Nome do consultório: ");
+		scan.nextLine();
+		c = consRep.buscarConsultorio(scan.nextLine());
+		while (c == null) {
+			System.out.print("| Consultório não encontrado.\n"
+					+ "| Digite 'voltar' se necessário.\n"
+					+ "| Nome do consultório: ");
+			
+			nome = scan.nextLine();
+			if(nome.equals("voltar"))
 				return;
-			System.out.print("Nome do Consultorio:");
-			ct = consRep.buscarConsultorio(scan.nextLine());
+			c = consRep.buscarConsultorio(nome);
 		}
-		ct.toString();
-		String data;
-		System.out.print("Qual a data da consulta?: ");
+		
+		System.out.print("| Qual a data da consulta?: ");
 		data = scan.nextLine();
-		u.agendarConsulta(ct, data);
+		u.agendarConsulta(c, data);
 	}
 	
 	public void cadastrarConsultorio(Scanner scan, Doutor u, Repositorioconsultorios consRep) {
 		escolha = 0;
-		clear();
-		System.out.print("\t---Cadastro de Consultório---\nNome do Consutório: ");
+		
+		System.out.print(
+				  "+=================================+\n"
+				+ "| --- Cadastro de Consultório ---\n"
+				+ "|\n"
+				+ "| Nome: ");
 		scan.nextLine();
 		u.cadastrarConsultorio(scan.nextLine(), consRep);
 	}
-	
 }

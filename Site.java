@@ -9,34 +9,38 @@ public class Site {
 		Interface inter = new Interface();
 		Usuario u = null;
 		int tela = 0;
-		//0=login 1=userArea 2=buscaCons 3=addCons
+		//0=login 1=newUser 2=loginUser 3=userPlace 4=bucaCons 5=addCons
 		
-		//Repositorios
+		//Repositories
 		Repositoriousuarios userRep = new Repositoriousuarios();
 		Repositorioconsultorios consRep = new Repositorioconsultorios();
 		
 		while(tela>=0) {
 			switch(tela) {
 			case 0:
-				u = inter.start(scan,userRep);
-				tela = 1;
+				tela = inter.start(scan);
 				continue;
 			case 1:
-				tela = inter.userPlace(scan, u, userRep);
+				u = inter.newUser(scan, userRep);
+				tela = 3;
 				continue;
 			case 2:
-				inter.fazConsulta(scan, (Paciente)u, consRep);
-				tela = 1;
+				u = inter.loginUser(scan, userRep);
+				tela = 3;
 				continue;
 			case 3:
-				inter.cadastrarConsultorio(scan, (Doutor)u, consRep);
-				tela = 1;
+				tela = inter.userPlace(scan, u);
 				continue;
 			case 4:
+				inter.fazConsulta(scan, (Paciente)u, consRep);
+				tela = 3;
+				continue;
+			case 5:
+				inter.cadastrarConsultorio(scan, (Doutor)u,consRep);
+				tela = 3;
+				continue;
 			}
-		}
-		
-		
 		scan.close();
+		}
 	}
 }
