@@ -121,7 +121,8 @@ public class Interface {
 		case 1:
 			u.verAgenda();
 			scan.nextLine();
-			System.out.print("| Digite qualquer tecla para voltar: ");
+			System.out.print("|\n"
+					+ "| Digite qualquer tecla para voltar: ");
 			scan.nextLine();
 			return 3;
 		case 2:
@@ -153,6 +154,7 @@ public class Interface {
 		while (c == null) {
 			System.out.print("| Consultório não encontrado.\n"
 					+ "| Digite 'voltar' se necessário.\n"
+					+ "|\n"
 					+ "| Nome do consultório: ");
 			
 			nome = scan.nextLine();

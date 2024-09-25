@@ -42,7 +42,7 @@ public class Repositorioconsultorios {
 		for(Consultorio c : consultorios) {
 			System.out.printf(
 					  "| Consultório %-20s|\n"
-					+ "| Dr. %-20s|\n"
+					+ "| Dr. %-28s|\n"
 					+ "+---------------------------------+\n",c.getNome(),c.getDoutorResponsavel().getNome());
 		}
 	}
