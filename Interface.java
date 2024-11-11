@@ -15,7 +15,8 @@ public class Interface {
 				+ "|\n"
 				+ "| 1- Novo Usuário\n"
 				+ "| 2- Conectar-se\n"
-				+ "| 3- Sair\n"
+				+ "|\n"
+				+ "| 3- Fechar Programa\n"
 				+ "|\n"
 				+ "|-> ");
 		escolha = scan.nextInt();
@@ -50,7 +51,7 @@ public class Interface {
 		
 		System.out.print("|   É um Doutor?(s/n): ");
 		
-		u = (scan.nextLine().equals("s")) ? new Doutor(nome,cpf) : new Paciente(nome,cpf);
+		u = (scan.nextLine().equals("s")) ? new Doutor("Dr. "+nome,cpf) : new Paciente(nome,cpf);
 		
 		userRep.addusuario(u);
 		return u;
@@ -106,7 +107,8 @@ public class Interface {
 			System.out.print("| 1- Ver agenda e seus consultórios\n"
 					+ "| 2- Adicionar Consultório\n");
 		System.out.print("| 3- Desconectar\n"
-				+ "| 4- Sair\n"
+				+ "|\n"
+				+ "| 4- Fechar Programa\n"
 				+ "|\n"
 				+ "|-> ");
 		
@@ -119,10 +121,9 @@ public class Interface {
 		
 		switch(escolha) {
 		case 1:
-			u.verAgenda();
+			System.out.print(u.getAgenda());
 			scan.nextLine();
-			System.out.print("|\n"
-					+ "| Digite qualquer tecla para voltar: ");
+			System.out.print("| Digite qualquer tecla para voltar: ");
 			scan.nextLine();
 			return 3;
 		case 2:
@@ -146,7 +147,7 @@ public class Interface {
 				+ "| --- Consultórios Cadastrados ---\n"
 				+ "|\n");
 		
-		consRep.printConsultorios();
+		System.out.print(consRep.getConsultorios());
 		
 		System.out.print("| Nome do consultório: ");
 		scan.nextLine();
@@ -154,7 +155,6 @@ public class Interface {
 		while (c == null) {
 			System.out.print("| Consultório não encontrado.\n"
 					+ "| Digite 'voltar' se necessário.\n"
-					+ "|\n"
 					+ "| Nome do consultório: ");
 			
 			nome = scan.nextLine();

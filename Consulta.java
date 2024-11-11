@@ -12,10 +12,10 @@ public class Consulta {
 	}
 	public String toString(Usuario u) {
 		if(u instanceof Doutor)
-			return "Consulta com "+ paciente.getNome()
+			return "- Consulta com "+ paciente.getNome()
 					+ " no consultório "+ consultorio.getNome()+" em "+ dataHora;
 		else
-			return "Consulta com "+ consultorio.getDoutorResponsavel().getNome()
+			return "- Consulta com "+ consultorio.getDoutorResponsavel().getNome()
 					+ " no consultório " + consultorio.getNome()+" em "+ dataHora;
 	}
 }

@@ -37,13 +37,13 @@ public class Repositorioconsultorios {
 		return false;
 	}
 	
-	public void printConsultorios() {
-		System.out.println("+---------------------------------+");
+	public String getConsultorios() {
+		String result = "+---------------------------------+\n";
 		for(Consultorio c : consultorios) {
-			System.out.printf(
-					  "| Consultório %-20s|\n"
-					+ "| Dr. %-28s|\n"
-					+ "+---------------------------------+\n",c.getNome(),c.getDoutorResponsavel().getNome());
+			result += String.format("| Consultório %-20s|\n"
+								  + "| %-32s|\n"
+								  + "+---------------------------------+\n",c.getNome(),c.getDoutorResponsavel().getNome());
 		}
+		return result;
 	}
 }

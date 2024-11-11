@@ -16,13 +16,13 @@ public class Paciente extends Usuario {
 		consultorio.adicionarConsulta(consulta);
 	}
 	@Override
-	public void verAgenda() {
-		System.out.print(
-				  "+=================================+\n"
-				+ "|         -Sua Agenda-\n"
-				+ "|\n");
+	public String getAgenda() {
+		String result = "+=================================+\n"
+					  + "|         -Sua Agenda-\n"
+					  + "|\n";
 		for (Consulta consulta : consultasAgendadas) {
-			System.out.print("| "+consulta.toString((Usuario)this)+"\n");
+			result += "| "+consulta.toString((Usuario)this)+"\n|\n";
 		}
+		return result;
 	}
 }

@@ -22,9 +22,11 @@ public class Consultorio {
 	public void adicionarConsulta(Consulta consulta) {
 		consultas.add(consulta);
 	}
-	public void verConsultas() {
+	public String getConsultas() {
+		String result = "";
 		for (Consulta consulta : consultas) {
-			System.out.println("| "+consulta.toString((Usuario)doutorResponsavel));
+			result += "| "+consulta.toString((Usuario)doutorResponsavel)+"\n";
 		}
+		return result;
 	}
 }

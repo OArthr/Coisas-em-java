@@ -15,5 +15,5 @@ public abstract class Usuario {
 	public String getCpf() {
 		return cpf;
 	}
-	public abstract void verAgenda();
+	public abstract String getAgenda();
 }

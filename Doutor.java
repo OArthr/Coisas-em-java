@@ -17,17 +17,16 @@ public class Doutor extends Usuario{
 	}
 	
 	@Override
-	public void verAgenda() {
-		System.out.print(
-				  "+=================================+\n"
-				+ "|         -Seus Consultórios-\n"
-				+ "|\n");
+	public String getAgenda() {
+		String result = "+=================================+\n"
+					  + "|         -Seus Consultórios-\n"
+					  + "|\n";
 		for (Consultorio consultorio : consultorios) {
-			System.out.printf(
-					  "+---------------------------------+\n"
-					+ "| Consultório: %-19s|\n"
-					+ "+---------------------------------+\n",consultorio.getNome());
-			consultorio.verConsultas();
+			result += String.format("+---------------------------------+\n"
+								  + "| Consultório: %-19s|\n"
+								  + "+---------------------------------+\n",consultorio.getNome())
+					+ consultorio.getConsultas();
 		}
+		return result;
 	}
 }
