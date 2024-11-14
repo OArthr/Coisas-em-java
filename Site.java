@@ -18,7 +18,11 @@ public class Site {
 		while(tela>=0) {
 			switch(tela) {
 			case 0:
-				tela = inter.start(scan);
+				try{
+					tela = inter.start(scan);
+				}catch (Exception e) {
+					tela = 0;
+				}
 				continue;
 			case 1:
 				u = inter.newUser(scan, userRep);
@@ -29,7 +33,11 @@ public class Site {
 				tela = 3;
 				continue;
 			case 3:
-				tela = inter.userPlace(scan, u);
+				try{
+					tela = inter.userPlace(scan, u);
+				}catch (Exception e) {
+					tela = 3;
+				}
 				continue;
 			case 4:
 				inter.fazConsulta(scan, (Paciente)u, consRep);

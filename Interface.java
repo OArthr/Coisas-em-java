@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Interface {
 	private int escolha;
 	
-	public int start(Scanner scan) {
+	public int start(Scanner scan) throws Exception{
 		escolha = 0;
 		System.out.print(
 				  "+=================================+\n"
@@ -17,12 +17,17 @@ public class Interface {
 				+ "| 2- Conectar-se\n"
 				+ "|\n"
 				+ "| 3- Fechar Programa\n"
-				+ "|\n"
-				+ "|-> ");
-		escolha = scan.nextInt();
+				+ "|\n");
+		
 		while(escolha<1||escolha>3) {
 			System.out.print("|-> ");
-			escolha = scan.nextInt();
+			try{
+				escolha = scan.nextInt();
+			}catch (Exception e) {
+				scan.next();
+				System.out.println("| Valor inválido!");
+				throw new Exception();
+			}
 		}
 		scan.nextLine();
 		if(escolha ==3)
@@ -51,7 +56,7 @@ public class Interface {
 		
 		System.out.print("|   É um Doutor?(s/n): ");
 		
-		u = (scan.nextLine().equals("s")) ? new Doutor("Dr. "+nome,cpf) : new Paciente(nome,cpf);
+		u = (scan.nextLine().toUpperCase().equals("S")) ? new Doutor("Dr. "+nome,cpf) : new Paciente(nome,cpf);
 		
 		userRep.addusuario(u);
 		return u;
@@ -87,7 +92,7 @@ public class Interface {
 		return u;
 	}
 	
-	public int userPlace(Scanner scan, Usuario u) {
+	public int userPlace(Scanner scan, Usuario u) throws Exception{
 		escolha = 0;
 		System.out.printf(
 				  "+=================================+\n"
@@ -109,14 +114,17 @@ public class Interface {
 		System.out.print("| 3- Desconectar\n"
 				+ "|\n"
 				+ "| 4- Fechar Programa\n"
-				+ "|\n"
-				+ "|-> ");
+				+ "|\n");
 		
-		escolha = scan.nextInt();
 		while(escolha<1||escolha>4) {
-			System.out.print("| Digite uma escolha válida.\n"
-					+ "|-> ");
-			escolha = scan.nextInt();
+			System.out.print("|-> ");
+			try{
+				escolha = scan.nextInt();
+			}catch (Exception e) {
+				scan.next();
+				System.out.println("| Valor inválido!");
+				throw new Exception();
+			}
 		}
 		
 		switch(escolha) {
