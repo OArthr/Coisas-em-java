@@ -11,11 +11,8 @@ public class Consulta {
 		this.dataHora = dataHora;
 	}
 	public String toString(Usuario u) {
-		if(u instanceof Doutor)
-			return "- Consulta com "+ paciente.getNome()
-					+ " no consultório "+ consultorio.getNome()+" em "+ dataHora;
-		else
-			return "- Consulta com "+ consultorio.getDoutorResponsavel().getNome()
-					+ " no consultório " + consultorio.getNome()+" em "+ dataHora;
+		return "- Consulta com "+ ((u instanceof Doutor)? paciente.getNome():consultorio.getDoutorResponsavel().getNome())
+				+ " no consultório " + consultorio.getNome()
+				+ " em " + dataHora;
 	}
 }

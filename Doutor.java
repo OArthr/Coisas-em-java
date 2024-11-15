@@ -24,7 +24,8 @@ public class Doutor extends Usuario{
 		for (Consultorio consultorio : consultorios) {
 			result += String.format("+---------------------------------+\n"
 								  + "| Consultório: %-19s|\n"
-								  + "+---------------------------------+\n",consultorio.getNome())
+								  + "+---------------------------------+\n"
+								  ,consultorio.getNome())
 					+ consultorio.getConsultas();
 		}
 		return result;
