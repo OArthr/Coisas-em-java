@@ -1,4 +1,6 @@
-package p1;
+package userInterface;
+import dados.*;
+import negocios.*;
 
 import java.util.Scanner;
 

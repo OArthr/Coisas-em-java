@@ -1,4 +1,4 @@
-package p1;
+package negocios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class Consultorio {
 	public String getConsultas() {
 		String result = "";
 		for (Consulta consulta : consultas) {
-			result += "| "+consulta.toString((Usuario)doutorResponsavel)+"\n";
+			result += "| - "+consulta.toString((Usuario)doutorResponsavel)+"\n";
 		}
 		return result;
 	}
