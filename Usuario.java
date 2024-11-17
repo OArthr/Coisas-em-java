@@ -1,4 +1,4 @@
-package p1;
+package negocios;
 
 public abstract class Usuario {
 	private String nome;

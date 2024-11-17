@@ -1,7 +1,9 @@
-package p1;
+package negocios;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dados.Repositorioconsultorios;
 
 public class Doutor extends Usuario{
 	private List<Consultorio> consultorios;

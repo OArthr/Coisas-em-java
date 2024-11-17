@@ -1,4 +1,4 @@
-package p1;
+package negocios;
 
 public class Consulta {
 	private Paciente paciente;
@@ -11,7 +11,7 @@ public class Consulta {
 		this.dataHora = dataHora;
 	}
 	public String toString(Usuario u) {
-		return "- Consulta com "+ ((u instanceof Doutor)? paciente.getNome():consultorio.getDoutorResponsavel().getNome())
+		return "Consulta com "+ ((u instanceof Doutor)? paciente.getNome():consultorio.getDoutorResponsavel().getNome())
 				+ " no consultório " + consultorio.getNome()
 				+ " em " + dataHora;
 	}

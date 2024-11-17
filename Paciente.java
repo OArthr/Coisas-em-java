@@ -1,4 +1,4 @@
-package p1;
+package negocios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Paciente extends Usuario {
 					  + "|         -Sua Agenda-\n"
 					  + "|\n";
 		for (Consulta consulta : consultasAgendadas) {
-			result += "| "+consulta.toString((Usuario)this)+"\n|\n";
+			result += "| - "+consulta.toString((Usuario)this)+"\n|\n";
 		}
 		return result;
 	}
